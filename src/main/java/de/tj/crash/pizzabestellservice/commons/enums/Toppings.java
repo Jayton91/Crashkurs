@@ -41,8 +41,8 @@ public enum Toppings {
 		return this.price;
 	}
 	
-	public List<Toppings> getAllToppings(){
-		return Arrays.asList(this.getDeclaringClass().getEnumConstants());
+	public static List<Toppings> getAllToppings(){
+		return Arrays.asList(PEPPERONI.getDeclaringClass().getEnumConstants());
 	}
 	
 	

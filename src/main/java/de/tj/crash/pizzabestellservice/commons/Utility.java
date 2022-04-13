@@ -29,5 +29,16 @@ public class Utility {
 		return ret;
 		
 	}
+	
+	public static double getToppingPriceByName(String name) {
+		double ret = 0d;
+		for(Toppings t : Toppings.getAllToppings()) {
+			if(t.getName().equals(name)) {
+				ret = t.getPrice();
+				break;
+			}
+		}
+		return ret;
+	}
 
 }
