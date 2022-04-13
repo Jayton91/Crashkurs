@@ -41,6 +41,10 @@ public enum Toppings {
 		return this.price;
 	}
 	
+	public List<Toppings> getAllToppings(){
+		return Arrays.asList(this.getDeclaringClass().getEnumConstants());
+	}
+	
 	
 	
 	
