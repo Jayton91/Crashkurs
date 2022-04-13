@@ -1,5 +1,7 @@
 package de.tj.crash.pizzabestellservice;
 
+import de.tj.crash.pizzabestellservice.commons.Utility;
+import de.tj.crash.pizzabestellservice.commons.enums.Toppings;
 import de.tj.crash.pizzabestellservice.controller.Controller;
 import de.tj.crash.pizzabestellservice.view.View;
 
@@ -24,6 +26,8 @@ public class MainClass {
 
 	public static void main(String[] args) {
 		initSystem();
+		
+		Toppings t = Utility.getToppingByName(Toppings.CHEESE.getName());
 		
 		view.printGreeting();
 		view.printMenu();
