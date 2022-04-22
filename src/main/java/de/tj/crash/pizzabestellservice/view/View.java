@@ -8,7 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 import de.tj.crash.pizzabestellservice.controller.Controller;
+import de.tj.crash.pizzabestellservice.model.MushroomPizza;
 import de.tj.crash.pizzabestellservice.model.PepperoniPizza;
+import de.tj.crash.pizzabestellservice.model.TonnoPizza;
 import de.tj.crash.pizzabestellservice.model.base.BasePizza;
 import de.tj.crash.pizzabestellservice.model.base.Order;
 
@@ -19,7 +21,7 @@ import de.tj.crash.pizzabestellservice.model.base.Order;
 public class View {
 	
 	private Map<Integer,String> menuMap; //kleine Einführung in Maps
-	private final List<String> menuList = new ArrayList<String>(Arrays.asList("Pizza Margherita","Pepperoni Pizza")); //Listen sind wichtig!
+	private final List<String> menuList = new ArrayList<String>(Arrays.asList("Pizza Margherita","Pepperoni Pizza", "Pizza Tonno", "Pizza Funghi")); //Listen sind wichtig!
 	private final StringBuilder sb=new StringBuilder();
 	private Controller controller;
 	
@@ -56,7 +58,7 @@ public class View {
 			System.out.println("Ich habe Sie leider nicht verstanden. Bitte versuchen sie es erneut.");
 		}
 		ret += generateOrderedString(singleOrderNumber);
-		System.out.println(ret);;
+		System.out.println(ret);
 	}
 	
 	private String generateOrderedString(int singleOrderNumber) {
@@ -66,12 +68,16 @@ public class View {
 		case 2:
 			order = new PepperoniPizza();
 			break;
-
+		case 3:
+			order = new TonnoPizza();
+			break;
+		case 4:
+			order = new MushroomPizza();
+			break;
 		default:
 			order = new BasePizza();
 			break;
 		}
-		
 		return order.orderAsString();
 	}
 	

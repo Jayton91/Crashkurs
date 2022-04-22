@@ -7,34 +7,34 @@ import de.tj.crash.pizzabestellservice.commons.Utility;
 import de.tj.crash.pizzabestellservice.commons.enums.Toppings;
 
 /**
- * Die Pizza-Basisklasse. Jede Pizza ist auch eine Grundpizza! Und jede Grundpizza ist ein Order.
- * Hier eine weitere Aufgabe: Ich möchte in meiner Pizzeria auch Croques anbieten!
+ * Die Pizza-Basisklasse. Jede Pizza ist auch eine Grundpizza! Und jede
+ * Grundpizza ist ein Order. Hier eine weitere Aufgabe: Ich möchte in meiner
+ * Pizzeria auch Croques anbieten!
  *
  */
-public class BasePizza implements Order{
-	
+public class BasePizza implements Order {
+
 	private String name;
 	private double price;
 	private List<String> toppings;
-	
-	public BasePizza(String name, double price)  {
+
+	public BasePizza(String name, double price) {
 		this.name = name;
-		this.price=price;
+		this.price = price;
 		this.toppings = new ArrayList<String>();
 		addTopping(Toppings.CHEESE);
 		addTopping(Toppings.TOMATOESAUCE);
-		
-		
+
 	}
 
-	//Standardkonstruktor, der einfach mal die Dinge selbst ermittelt.
+	// Standardkonstruktor, der einfach mal die Dinge selbst ermittelt.
 	public BasePizza() {
 		this.name = "Pizza Margherita";
-		
+
 		this.toppings = new ArrayList<String>();
 		addTopping(Toppings.CHEESE);
 		addTopping(Toppings.TOMATOESAUCE);
-		this.price=calculatePrice();
+		this.price = calculatePrice();
 	}
 
 	public String getName() {
@@ -60,7 +60,7 @@ public class BasePizza implements Order{
 	public void setToppings(List<String> toppings) {
 		this.toppings = toppings;
 	}
-	
+
 	public void addTopping(Toppings topping) {
 		this.toppings.add(topping.getName());
 	}
@@ -68,35 +68,44 @@ public class BasePizza implements Order{
 	@Override
 	public double calculatePrice() {
 		// TODO eine Aufgabe: Preis einberechnen.
-		//Jedes Topping soll einen Preis erhalten, woraus sich der Preis der Pizza zusammenstellt.
-		//aktuell bietet die Preisberechnung nur den Basispreis
-		
+		// Jedes Topping soll einen Preis erhalten, woraus sich der Preis der Pizza
+		// zusammenstellt.
+		// aktuell bietet die Preisberechnung nur den Basispreis
+
 		double price = 0.0;
-		
-		if(toppings != null) {
-			for(String t : toppings) {
-				price += Utility.getToppingPriceByName(t);
-			}
+
+		for (String t : toppings) {
+			price += Utility.getToppingPriceByName(t);
 		}
-	
-		return price; 
-		
+
+		return price;
+
 	}
 
 	@Override
 	public String orderAsString() {
-		//Eine kleine Einführung in die Nutzung eines StringBuilders. Ist effizienter, performanter(?) und umfangreicher als
-		//reine String-generierung
+		// Eine kleine Einführung in die Nutzung eines StringBuilders. Ist effizienter,
+		// performanter(?) und umfangreicher als
+		// reine String-generierung
 		StringBuilder sb = new StringBuilder();
-		sb.append("Pizza: ").append(name);
-		for(String s : toppings) {
-			sb.append("\n").append(s);
+		sb.append("Pizza: ").append(name + "\n");
+		sb.append("Mit ");
+		for (int i = 0; i < toppings.size(); i++) {
+			if (i < toppings.size() - 1) {
+				sb.append(toppings.get(i) + ", ");
+			} else {
+				int len = sb.length();
+				sb.deleteCharAt(len - 2);
+				sb.append("und " + toppings.get(i));
+			}
+
 		}
-		sb.append("\nPreis: ").append(price);
+//		for (String s : toppings) {
+////			sb.append("\n").append(s);
+//			sb.append(s + ", ");
+//		}
+		sb.append("\nPreis: ").append(price).append(" €");
 		return sb.toString();
 	}
-	
-	
-	
 
 }

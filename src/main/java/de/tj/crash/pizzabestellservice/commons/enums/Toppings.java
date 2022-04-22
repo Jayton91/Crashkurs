@@ -9,7 +9,7 @@ import java.util.List;
  */
 public enum Toppings {
 	
-	PEPPERONI(1L, "Pepperoni",3.0), CHEESE(2L,"Käse",1.5), TOMATOESAUCE(3L,"Tomatensoße",0.5), NONE(4L,"Ohne",0d);
+	PEPPERONI(1L, "Pepperoni",3.0), CHEESE(2L,"Käse",1.5), TOMATOESAUCE(3L,"Tomatensoße",0.5), NONE(4L,"Ohne",0d), MUSHROOM(5L, "Pilze", 3.0), OLIVE(6L, "Oliven", 0.8), FISH(7L, "Thunfisch", 4.20);
 
 	private String name;
 	private long value;
