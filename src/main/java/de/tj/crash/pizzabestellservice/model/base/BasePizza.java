@@ -3,6 +3,7 @@ package de.tj.crash.pizzabestellservice.model.base;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.tj.crash.pizzabestellservice.commons.Utility;
 import de.tj.crash.pizzabestellservice.commons.enums.Toppings;
 
 /**
@@ -29,10 +30,11 @@ public class BasePizza implements Order{
 	//Standardkonstruktor, der einfach mal die Dinge selbst ermittelt.
 	public BasePizza() {
 		this.name = "Pizza Margherita";
-		this.price=calculatePrice();
+		
 		this.toppings = new ArrayList<String>();
 		addTopping(Toppings.CHEESE);
 		addTopping(Toppings.TOMATOESAUCE);
+		this.price=calculatePrice();
 	}
 
 	public String getName() {
@@ -69,7 +71,15 @@ public class BasePizza implements Order{
 		//Jedes Topping soll einen Preis erhalten, woraus sich der Preis der Pizza zusammenstellt.
 		//aktuell bietet die Preisberechnung nur den Basispreis
 		
-		return 5.5d; 
+		double price = 0.0;
+		
+		if(toppings != null) {
+			for(String t : toppings) {
+				price += Utility.getToppingPriceByName(t);
+			}
+		}
+	
+		return price; 
 		
 	}
 

@@ -16,8 +16,8 @@ public class PepperoniPizza extends BasePizza {
 	public PepperoniPizza() {
 		super();//auf jeden Fall immer als erstes super(); das ist der Konstruktor der BasePizza
 		setName("Pepperoni Pizza"); //und anschließend alles neu überschreiben. Felder werden vererbt.
-		setPrice(calculatePrice());
 		addToppingsForPeperroni();
+		setPrice(calculatePrice());
 	}
 
 	private void addToppingsForPeperroni() {
